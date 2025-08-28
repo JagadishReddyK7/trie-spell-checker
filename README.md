@@ -1,7 +1,7 @@
 
 # Spell Checker, Autocomplete, Autocorrect using Trie
 
-This program implements an efficient spell checker using a **Trie** datastructure to support three different functionalities.
+This program implements an efficient spell checker using a **Trie** data structure to support three different functionalities.
 
 ---
 
