@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -78,7 +79,7 @@ class Trie {
         void recurse(TrieNode* node, int i, int k, string s, string ssf, vector<string>& res) {
             if(k>3) return;
             int len=s.size();
-            if(node->endOfWord && i==len && k<=3) {
+            if(node->endOfWord && (k+(s.size()-i))<3) {
                 if(!node->visited) {
                     res.push_back(ssf);
                     node->visited=true;
@@ -149,6 +150,7 @@ int main() {
                 trie.searchFromHere(temp, queries[i].s, v);
             }
             num=v.size();
+            sort(v.begin(), v.end());
             cout<<num<<endl;
             for(int i=0;i<num;i++) {
                 cout << v[i]<<endl;
@@ -159,15 +161,13 @@ int main() {
             vector<string> auto_correct;
             trie.recurse(temp_node, 0, 0, queries[i].s, "", auto_correct);
             int len=auto_correct.size();
+            sort(auto_correct.begin(), auto_correct.end());
             cout<<len<<endl;
             for(int i=0;i<len;i++) {
                 cout<<auto_correct[i]<<endl;
             }
             TrieNode* temp_node1=trie.get_root();
             trie.devisit(temp_node1);
-        }
-        else {
-            cout<<"Invalid flag"<<endl;
         }
     }
     // cout << trie.search(s) << endl;
